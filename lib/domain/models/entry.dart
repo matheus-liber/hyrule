@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:floor/floor.dart';
 
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 @entity
 class Entry {
   @primaryKey
   int id;
   String name;
-  String img;
+  String image;
   String description;
   String commonLocations;
   String category;
@@ -15,17 +16,17 @@ class Entry {
   Entry({
     required this.id,
     required this.name,
-    required this.img,
+    required this.image,
     required this.description,
     required this.commonLocations,
-    required this.category
+    required this.category,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'img': img,
+      'image': image,
       'description': description,
       'commonLocations': commonLocations,
       'category': category,
@@ -36,7 +37,7 @@ class Entry {
     return Entry(
       id: map['id'] as int,
       name: map['name'] as String,
-      img: map['img'] as String,
+      image: map['image'] as String,
       description: map['description'] as String,
       commonLocations: jsonEncode(map['common_locations'] ?? ['Sem localização']),
       category: map['category'] as String,
@@ -50,6 +51,4 @@ class Entry {
   String toJson() => json.encode(toMap());
 
   factory Entry.fromJson(String source) => Entry.fromMap(json.decode(source) as Map<String, dynamic>);
-
-
 }

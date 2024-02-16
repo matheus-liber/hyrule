@@ -5,5 +5,5 @@ const Map<String, String> categories = {
   'equipment': 'Equipment',
   'materials': 'Materials',
   'monsters': 'Monsters',
-  'treasure': 'Treasure'
+  'treasure': 'Treasure',
 };

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hyrule/domain/models/entry.dart';
 
 class EntryCard extends StatelessWidget {
-  const EntryCard({super.key, required this.entry});
-
+  const EntryCard({Key? key, required this.entry}) : super(key: key);
   final Entry entry;
 
   @override
@@ -16,11 +15,13 @@ class EntryCard extends StatelessWidget {
             child: Ink(
               child: Row(
                 children: <Widget>[
-                  Image.network(entry.img),
+                  Image.network(entry.image),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[Text(entry.name), Text(entry.description)],
-                  )
+                    children: <Widget>[
+                    Text(entry.name),
+                    Text(entry.description),
+                  ],)
                 ],
               ),
             ),
@@ -29,9 +30,9 @@ class EntryCard extends StatelessWidget {
             children: entry.commonLocationsConverter().map(
                   (e) => Chip(
                     label: Text(e),
-                  ),
+                  )
                 ).toList(),
-          )
+          ),
         ],
       ),
     );
