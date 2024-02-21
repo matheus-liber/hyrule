@@ -29,28 +29,31 @@ Results({ Key? key, required this.category }) : super(key: key);
                 icon: const Icon(Icons.bookmark))
           ],
         ),
-        body: FutureBuilder(
-          future: apiController.getEntriesByCategory(category: category),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.active:
-                break;
-
-              case ConnectionState.none:
-                break;
-
-              case ConnectionState.done:
-                if(snapshot.hasData) {
-                  return ListView.builder(
-                    itemBuilder: (context, index) => EntryCard(entry: snapshot.data![index], isSaved: false,), itemCount: snapshot.data!.length,);
-                }
-
-              case ConnectionState.waiting:
-                return const Center(child: CircularProgressIndicator(),);
-              default:
-            }
-            return Container();
-          },
+        body: Container(
+          padding: const EdgeInsets.all(10),
+          child: FutureBuilder(
+            future: apiController.getEntriesByCategory(category: category),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.active:
+                  break;
+          
+                case ConnectionState.none:
+                  break;
+          
+                case ConnectionState.done:
+                  if(snapshot.hasData) {
+                    return ListView.builder(
+                      itemBuilder: (context, index) => EntryCard(entry: snapshot.data![index], isSaved: false,), itemCount: snapshot.data!.length,);
+                  }
+          
+                case ConnectionState.waiting:
+                  return const Center(child: CircularProgressIndicator(),);
+                default:
+              }
+              return Container();
+            },
+          ),
         ),
       ),
     );

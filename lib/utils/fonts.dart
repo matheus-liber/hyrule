@@ -14,7 +14,7 @@ class AppFonts {
   );
 
   static const TextStyle bodyTextStyle = TextStyle(
-    fontSize: 16,
+    fontSize: 12,
     // Outras propriedades de estilo aqui...
   );
 }
