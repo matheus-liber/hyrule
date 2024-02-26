@@ -13,8 +13,8 @@ class AppFonts {
     color: AppColors.blueColor
   );
 
-  static const TextStyle bodyTextStyle = TextStyle(
-    fontSize: 12,
-    // Outras propriedades de estilo aqui...
+  static const TextStyle entryCardTextStyle = TextStyle(
+    fontSize: 22,
+    fontFamily: 'Philosopher'
   );
 }
