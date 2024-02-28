@@ -22,68 +22,86 @@ class EntryCard extends StatelessWidget {
         onDismissed: (direction) {
           daoController.deleteEntry(entry: entry);
         },
+        background: Container(
+          color: Colors.red,
+          alignment: Alignment.centerRight,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+        ),
         child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Details(entry: entry)));
-                  },
-                  child: Ink(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 112,
-                          height: 180,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              entry.image,
-                              fit: BoxFit.cover,
-                            ),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Details(entry: entry)));
+                },
+                child: Ink(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 112,
+                        height: 180,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                            entry.image,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10, right: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 6),
-                                  child: Text(style: AppFonts.entryCardTextStyle, entry.name.toUpperCase()),
-                                ),
-                                Text(entry.description),
-                              ],
-                            ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6),
+                                child: Text(
+                                    style: AppFonts.entryCardTextStyle,
+                                    entry.name.toUpperCase()),
+                              ),
+                              Text(entry.description),
+                            ],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
-              Container(
-                width: double.infinity,
-                //decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                color: const Color(0xFF3B4858),
-                child: Wrap(
-                  children: entry
-                      .commonLocationsConverter()
-                      .map((e) => Chip(
-                            label: Text(e),
-                          ))
-                      .toList(),
+            ),
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(8),
+                  bottomRight: Radius.circular(8),
                 ),
+                color: Color(0xFF3B4858),
               ),
-            ],
-          ),
-
+              child: Wrap(
+                children: entry
+                    .commonLocationsConverter()
+                    .map((e) => Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
+                          child: Chip(
+                            label: Text(e),
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
